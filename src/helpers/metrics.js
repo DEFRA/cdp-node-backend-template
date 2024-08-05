@@ -6,6 +6,10 @@ import {
 import { config } from '~/src/config/index.js'
 import { createLogger } from '~/src/helpers/logging/logger.js'
 
+/**
+ * @param {string} metricName
+ * @param {number} value
+ */
 const counter = async (metricName, value = 1) => {
   const logger = createLogger()
   if (!config.get('isProduction')) return

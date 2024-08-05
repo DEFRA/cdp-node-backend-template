@@ -3,7 +3,7 @@ import { LockManager } from 'mongo-locks'
 
 import { config } from '~/src/config/index.js'
 
-const mongoDb = {
+export const mongoDb = {
   plugin: {
     name: 'mongodb',
     version: '1.0.0',
@@ -30,6 +30,7 @@ const mongoDb = {
       server.decorate('server', 'locker', locker)
       server.decorate('request', 'locker', locker)
 
+      // eslint-disable-next-line @typescript-eslint/no-misused-promises
       server.events.on('stop', async () => {
         server.logger.info('Closing Mongo client')
         await client.close(true)
@@ -44,6 +45,10 @@ const mongoDb = {
   }
 }
 
+/**
+ * @param {import('mongodb').Db} db
+ * @returns {Promise<void>}
+ */
 async function createIndexes(db) {
   await db.collection('mongo-locks').createIndex({ id: 1 })
 
@@ -51,4 +56,7 @@ async function createIndexes(db) {
   await db.collection('example-data').createIndex({ id: 1 })
 }
 
-export { mongoDb }
+/**
+ * To be mixed in with Request|Server to provide the db decorator
+ * @typedef {{db: import('mongodb').Db, locker: import('mongo-locks').LockManager }} MongoDBPlugin
+ */

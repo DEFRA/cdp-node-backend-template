@@ -1,6 +1,9 @@
 import { health } from '~/src/api/health/index.js'
 import { example } from '~/src/api/example/index.js'
 
+/**
+ * @satisfies {ServerRegisterPluginObject<void>}
+ */
 const router = {
   plugin: {
     name: 'Router',
@@ -13,5 +16,9 @@ const router = {
     }
   }
 }
+
+/**
+ * @import { ServerRegisterPluginObject } from '@hapi/hapi'
+ */
 
 export { router }

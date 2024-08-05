@@ -3,6 +3,10 @@ import { HttpsProxyAgent } from 'https-proxy-agent'
 
 import { config } from '~/src/config/index.js'
 
+/**
+ * HTTP Agent setup using the injected CDP Proxy Config
+ * @returns {{agent: HttpsProxyAgent<string>, url: URL}|null}
+ */
 const proxyAgent = () => {
   const proxy = config.get('httpsProxy') ?? config.get('httpProxy')
 

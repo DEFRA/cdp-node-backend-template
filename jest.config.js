@@ -1,3 +1,6 @@
+/**
+ * @type {Config}
+ */
 export default {
   rootDir: '.',
   testEnvironment: 'node',
@@ -15,3 +18,7 @@ export default {
   ],
   coverageDirectory: '<rootDir>/coverage'
 }
+
+/**
+ * @import { Config } from 'jest'
+ */

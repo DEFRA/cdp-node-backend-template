@@ -1,13 +1,18 @@
 {
   "compilerOptions": {
     "allowJs": true,
+    "checkJs": true,
     "module": "NodeNext",
     "noEmit": true,
     "paths": {
       "~/*": ["./*"]
     },
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strictFunctionTypes": true,
+    "strictNullChecks": true,
+    "types": ["jest"]
   },
-  "exclude": [".cache", ".public", ".server", "node_modules"],
-  "include": ["**/*.cjs", "**/*.js"]
+  "exclude": [".cache", ".public", ".server", "coverage", "node_modules"],
+  "include": ["**/*.cjs", "**/*.js", ".eslintrc.*", ".prettierrc.*"]
 }

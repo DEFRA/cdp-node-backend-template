@@ -46,8 +46,9 @@ async function createServer() {
     await server.register(secureContext)
   }
 
-  // The mongoDb plugin adds access to mongo by adding `db` to the server and request object.
-  // Also adds an instance of mongoClient to just the server object.
+  // Pulse   - provides shutdown handlers
+  // mongoDb - sets up mongo connection pool and attaches to `server` and `request` objects
+  // router  - routes used in the app
   await server.register([pulse, mongoDb, router])
 
   return server
