@@ -6,7 +6,6 @@ const example = [{
   path: '/example',
   handler: async (request, h) => {
     const entities = await findAllExampleData(request.db)
-
     return h.response({ message: 'success', entities })
   }
 },
@@ -15,6 +14,7 @@ const example = [{
   path: '/example/{exampleId}',
   handler: async (request, h) => {
     const entity = await findExampleData(request.db, request.params.exampleId)
+
     if (!entity) {
       return Boom.notFound()
     }

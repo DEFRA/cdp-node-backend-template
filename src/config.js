@@ -89,7 +89,7 @@ const config = convict({
   mongoDatabase: {
     doc: 'database for mongodb',
     format: String,
-    default: null,
+    default: 'cdp-node-backend-template',
     env: 'MONGO_DATABASE'
   },
   httpProxy: {

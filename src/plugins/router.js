@@ -1,14 +1,15 @@
 import { health } from '../routes/health.js'
 import { example } from '../routes/example.js'
 
-export const router = {
+const router = {
   plugin: {
     name: 'router',
-    async register (server) {
-      // Application specific routes, add your own routes here.
-      const appSpecificRoutes = [example]
-
-      server.route([health].concat(appSpecificRoutes))
+    register: (server, _options) => {
+      server.route([health].concat(
+        example
+      ))
     }
   }
 }
+
+export { router }

@@ -65,7 +65,7 @@ services:
   #   networks:
   #     - cdp-tenant
 
-  backend:
+  cdp-node-backend-template:
     build:
       context: .
       target: development

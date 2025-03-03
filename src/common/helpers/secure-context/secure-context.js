@@ -1,5 +1,5 @@
 import tls from 'node:tls'
-import { config } from '~/src/config/index.js'
+import { config } from '../../../config.js'
 
 import { getTrustStoreCerts } from './get-trust-store-certs.js'
 
