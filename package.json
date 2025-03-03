@@ -36,7 +36,7 @@
     "aws-embedded-metrics": "4.2.0",
     "aws4": "1.13.2",
     "convict": "6.2.4",
-    "fix": "0.0.6",
+    "convict-format-with-validator": "6.2.0",
     "hapi-pino": "12.1.0",
     "hapi-pulse": "3.0.1",
     "https-proxy-agent": "7.0.5",
@@ -45,7 +45,7 @@
     "node-fetch": "3.3.2",
     "pino": "9.5.0",
     "pino-pretty": "13.0.0",
-    "undici": "6.20.1"
+    "undici": "7.4.0"
   },
   "devDependencies": {
     "@shelf/jest-mongodb": "4.3.2",

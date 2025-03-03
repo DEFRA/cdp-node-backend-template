@@ -1,6 +1,9 @@
 import convict from 'convict'
+import convictFormatWithValidator from 'convict-format-with-validator'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+
+convict.addFormats(convictFormatWithValidator)
 
 const dirname = path.dirname(fileURLToPath(import.meta.url))
 
@@ -21,6 +24,12 @@ const config = convict({
     format: ['production', 'development', 'test'],
     default: 'development',
     env: 'NODE_ENV'
+  },
+  host: {
+    doc: 'The IP address to bind.',
+    format: 'ipaddress',
+    default: '0.0.0.0',
+    env: 'HOST'
   },
   port: {
     doc: 'The port to bind.',

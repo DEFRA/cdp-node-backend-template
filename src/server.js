@@ -11,6 +11,7 @@ import { requestTracing } from './common/helpers/request-tracing.js'
 
 async function createServer () {
   const server = Hapi.server({
+    host: config.get('host'),
     port: config.get('port'),
     routes: {
       validate: {
