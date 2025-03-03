@@ -20,8 +20,8 @@
     "postversion": "git add package.json package-lock.json && git commit -m $npm_package_version",
     "test": "jest --coverage --verbose --runInBand",
     "test:watch": "jest --watch",
-    "server:watch": "nodemon --inspect=0.0.0.0 --ext js,json,njk,scss --legacy-watch ./src",
-    "server:debug": "nodemon --inspect-brk=0.0.0.0 --ext js,json,njk,scss --legacy-watch ./src",
+    "server:watch": "nodemon --inspect=0.0.0.0 --ext js,json --legacy-watch ./src",
+    "server:debug": "nodemon --inspect-brk=0.0.0.0 --ext js,json --legacy-watch ./src",
     "start": "NODE_ENV=production node --use-strict .",
     "setup:husky": "node -e \"try { (await import('husky')).default() } catch (e) { if (e.code !== 'ERR_MODULE_NOT_FOUND') throw e }\" --input-type module"
   },
