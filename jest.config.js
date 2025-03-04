@@ -1,6 +1,3 @@
-/**
- * @type {Config}
- */
 export default {
   rootDir: '.',
   verbose: true,
@@ -22,7 +19,3 @@ export default {
   coverageDirectory: '<rootDir>/coverage',
   transform: {}
 }
-
-/**
- * @import { Config } from 'jest'
- */
