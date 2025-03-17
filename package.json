@@ -9,8 +9,8 @@
   },
   "scripts": {
     "docker:dev": "NODE_ENV=development npm run server:watch",
-    "dev": "npm run server:watch",
-    "dev:debug": "npm run server:debug",
+    "dev": "NODE_ENV=development npm run server:watch",
+    "dev:debug": "NODE_ENV=development npm run server:debug",
     "format": "prettier --write \"**/*.{md,json}\"",
     "format:check": "prettier --check \"**/*.{md,json}\"",
     "git:pre-commit-hook": "npm run format:check && npm run lint",
