@@ -1,14 +1,12 @@
 import convict from 'convict'
 import convictFormatWithValidator from 'convict-format-with-validator'
-import path from 'node:path'
-import { fileURLToPath } from 'node:url'
 
+import { convictValidateMongoUri } from './common/helpers/convict/validate-mongo-uri.js'
+
+convict.addFormat(convictValidateMongoUri)
 convict.addFormats(convictFormatWithValidator)
 
-const dirname = path.dirname(fileURLToPath(import.meta.url))
-
 const isProduction = process.env.NODE_ENV === 'production'
-const isDev = process.env.NODE_ENV === 'development'
 const isTest = process.env.NODE_ENV === 'test'
 
 const config = convict({
@@ -19,20 +17,14 @@ const config = convict({
     default: null,
     env: 'SERVICE_VERSION'
   },
-  env: {
-    doc: 'The application environment.',
-    format: ['production', 'development', 'test'],
-    default: 'development',
-    env: 'NODE_ENV'
-  },
   host: {
-    doc: 'The IP address to bind.',
+    doc: 'The IP address to bind',
     format: 'ipaddress',
     default: '0.0.0.0',
     env: 'HOST'
   },
   port: {
-    doc: 'The port to bind.',
+    doc: 'The port to bind',
     format: 'port',
     default: 3001,
     env: 'PORT'
@@ -42,28 +34,8 @@ const config = convict({
     format: String,
     default: 'cdp-node-backend-template'
   },
-  root: {
-    doc: 'Project root',
-    format: String,
-    default: path.resolve(dirname, '../..')
-  },
-  isProduction: {
-    doc: 'If this application running in the production environment',
-    format: Boolean,
-    default: isProduction
-  },
-  isDevelopment: {
-    doc: 'If this application running in the development environment',
-    format: Boolean,
-    default: isDev
-  },
-  isTest: {
-    doc: 'If this application running in the test environment',
-    format: Boolean,
-    default: isTest
-  },
   log: {
-    enabled: {
+    isEnabled: {
       doc: 'Is logging enabled',
       format: Boolean,
       default: !isTest,
@@ -76,7 +48,7 @@ const config = convict({
       env: 'LOG_LEVEL'
     },
     format: {
-      doc: 'Format to output logs in.',
+      doc: 'Format to output logs in',
       format: ['ecs', 'pino-pretty'],
       default: isProduction ? 'ecs' : 'pino-pretty',
       env: 'LOG_FORMAT'
@@ -89,20 +61,22 @@ const config = convict({
         : ['req', 'res', 'responseTime']
     }
   },
-  mongoUri: {
-    doc: 'URI for mongodb',
-    format: String,
-    default: null,
-    env: 'MONGO_URI'
-  },
-  mongoDatabase: {
-    doc: 'database for mongodb',
-    format: String,
-    default: 'cdp-node-backend-template',
-    env: 'MONGO_DATABASE'
+  mongo: {
+    uri: {
+      doc: 'URI for mongodb',
+      format: 'mongo-uri',
+      default: null,
+      env: 'MONGO_URI'
+    },
+    databaseName: {
+      doc: 'Database name for mongodb',
+      format: String,
+      default: 'cdp-node-backend-template',
+      env: 'MONGO_DATABASE'
+    }
   },
   httpProxy: {
-    doc: 'HTTP Proxy',
+    doc: 'HTTP Proxy URL',
     format: String,
     nullable: true,
     default: null,
@@ -122,7 +96,7 @@ const config = convict({
   },
   tracing: {
     header: {
-      doc: 'Which header to track',
+      doc: 'CDP tracing header name',
       format: String,
       default: 'x-cdp-request-id',
       env: 'TRACING_HEADER'

@@ -3,6 +3,8 @@ import { LockManager } from 'mongo-locks'
 
 import { config } from '../../config.js'
 
+const mongoConfig = config.get('mongo')
+
 export const mongoDb = {
   plugin: {
     name: 'mongodb',
@@ -10,7 +12,7 @@ export const mongoDb = {
     register: async function (server, options) {
       server.logger.info('Setting up MongoDb')
 
-      const client = await MongoClient.connect(options.mongoUrl, {
+      const client = await MongoClient.connect(options.mongoUri, {
         retryWrites: options.retryWrites,
         readPreference: options.readPreference,
         ...(server.secureContext && { secureContext: server.secureContext })
@@ -37,8 +39,8 @@ export const mongoDb = {
     }
   },
   options: {
-    mongoUrl: config.get('mongoUri'),
-    databaseName: config.get('mongoDatabase'),
+    mongoUri: mongoConfig.uri,
+    databaseName: mongoConfig.databaseName,
     retryWrites: false,
     readPreference: 'secondary'
   }
