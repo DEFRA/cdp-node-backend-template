@@ -7,8 +7,10 @@ Core delivery platform Node.js Backend Template.
 - [Local development](#local-development)
   - [Setup](#setup)
   - [Development](#development)
+    - [Local Environment Variables](#local-environment-variables)
   - [Testing](#testing)
   - [Production](#production)
+    - [Environment Variables](#environment-variables)
   - [Npm scripts](#npm-scripts)
   - [Update dependencies](#update-dependencies)
   - [Formatting](#formatting)
@@ -58,6 +60,12 @@ To run the application in `development` mode run:
 npm run dev
 ```
 
+#### Local Environment Variables
+
+When developing locally you can provide environment variables via an `.env` file in the root of the repo. Copy the
+[env.template](./.env.template) file and rename it to `.env`. Your teammates will have a copy with the values you
+need. They can securely share this with you.
+
 ### Testing
 
 To test the application run:
@@ -73,6 +81,10 @@ To mimic the application running in `production` mode locally run:
 ```bash
 npm start
 ```
+
+#### Environment Variables
+
+To set Environment Variables for your service in the CDP environments see https://github.com/DEFRA/cdp-app-config
 
 ### Npm scripts
 
