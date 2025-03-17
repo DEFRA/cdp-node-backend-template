@@ -6,9 +6,6 @@ import { convictValidateMongoUri } from './common/helpers/convict/validate-mongo
 convict.addFormat(convictValidateMongoUri)
 convict.addFormats(convictFormatWithValidator)
 
-const isProduction = process.env.NODE_ENV === 'production'
-const isTest = process.env.NODE_ENV === 'test'
-
 const config = convict({
   serviceVersion: {
     doc: 'The service version, this variable is injected into your docker container in CDP environments',
@@ -53,7 +50,7 @@ const config = convict({
     isEnabled: {
       doc: 'Is logging enabled',
       format: Boolean,
-      default: !isTest,
+      default: true,
       env: 'LOG_ENABLED'
     },
     level: {
@@ -65,15 +62,18 @@ const config = convict({
     format: {
       doc: 'Format to output logs in',
       format: ['ecs', 'pino-pretty'],
-      default: isProduction ? 'ecs' : 'pino-pretty',
+      default: 'pino-pretty',
       env: 'LOG_FORMAT'
     },
     redact: {
       doc: 'Log paths to redact',
       format: Array,
-      default: isProduction
-        ? ['req.headers.authorization', 'req.headers.cookie', 'res.headers']
-        : ['req', 'res', 'responseTime']
+      default: [
+        'req.headers.authorization',
+        'req.headers.cookie',
+        'res.headers'
+      ],
+      env: 'LOG_REDACT'
     }
   },
   mongo: {
@@ -100,13 +100,13 @@ const config = convict({
   isSecureContextEnabled: {
     doc: 'Enable Secure Context',
     format: Boolean,
-    default: isProduction,
+    default: false,
     env: 'ENABLE_SECURE_CONTEXT'
   },
   isMetricsEnabled: {
     doc: 'Enable metrics reporting',
     format: Boolean,
-    default: isProduction,
+    default: false,
     env: 'ENABLE_METRICS'
   },
   tracing: {
