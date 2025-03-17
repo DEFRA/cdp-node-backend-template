@@ -1,4 +1,4 @@
-function findAllExampleData (db) {
+function findAllExampleData(db) {
   const cursor = db
     .collection('example-data')
     .find({}, { projection: { _id: 0 } })
@@ -6,7 +6,7 @@ function findAllExampleData (db) {
   return cursor.toArray()
 }
 
-function findExampleData (db, id) {
+function findExampleData(db, id) {
   return db
     .collection('example-data')
     .findOne({ exampleId: id }, { projection: { _id: 0 } })
