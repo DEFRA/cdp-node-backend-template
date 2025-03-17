@@ -8,8 +8,8 @@ export default {
   watchPathIgnorePatterns: ['globalConfig'],
   testMatch: ['**/src/**/*.test.js'],
   reporters: ['default', ['github-actions', { silent: false }], 'summary'],
-  setupFiles: ['<rootDir>/.jest/setup.js'],
-  setupFilesAfterEnv: ['<rootDir>/.jest/setup-after-env.js'],
+  setupFiles: ['<rootDir>/.jest/setup-files.js'],
+  setupFilesAfterEnv: ['<rootDir>/.jest/setup-files-after-env.js'],
   collectCoverageFrom: ['src/**/*.js'],
   coveragePathIgnorePatterns: [
     '<rootDir>/node_modules/',
