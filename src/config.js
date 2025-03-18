@@ -35,8 +35,9 @@ const config = convict({
     default: 'cdp-node-backend-template'
   },
   cdpEnvironment: {
-    doc: 'The CDP environment the app is running in',
+    doc: 'The CDP environment the app is running in. With the addition of "local" for local development',
     format: [
+      'local',
       'infra-dev',
       'management',
       'dev',
@@ -45,8 +46,7 @@ const config = convict({
       'ext-test',
       'prod'
     ],
-    default: null,
-    nullable: true,
+    default: 'local',
     env: 'ENVIRONMENT'
   },
   log: {
