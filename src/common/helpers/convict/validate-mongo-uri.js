@@ -2,7 +2,7 @@ import Joi from 'joi'
 
 export const convictValidateMongoUri = {
   name: 'mongo-uri',
-  validate: function validateMongoUri (value) {
+  validate: function validateMongoUri(value) {
     const mongodbSchema = Joi.string().uri({
       scheme: ['mongodb']
     })
