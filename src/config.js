@@ -34,6 +34,21 @@ const config = convict({
     format: String,
     default: 'cdp-node-backend-template'
   },
+  cdpEnvironment: {
+    doc: 'The CDP environment the app is running in',
+    format: [
+      'infra-dev',
+      'management',
+      'dev',
+      'test',
+      'perf-test',
+      'ext-test',
+      'prod'
+    ],
+    default: null,
+    nullable: true,
+    env: 'ENVIRONMENT'
+  },
   log: {
     isEnabled: {
       doc: 'Is logging enabled',
