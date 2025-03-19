@@ -24,6 +24,15 @@ services:
       PORT: 8085
       MONGO_URI: "mongodb://mongodb:27017/?tls=true"
       TRUSTSTORE_MONGO: ${MONGODB_TEST_CA_PEM}
+      LOG_ENABLED: true
+      LOG_FORMAT: ecs
+      LOG_LEVEL: info
+      LOG_REDACT: 'req.headers.authorization,req.headers.cookie,res.headers'
+      MONGO_DATABASE: cdp-node-backend-template
+      ENABLE_SECURE_CONTEXT: true
+      ENABLE_METRICS: true
+      TRACING_HEADER: x-cdp-request-id
+      ENVIRONMENT: dev
     healthcheck:
       test: curl http://localhost:8085/health
       start_period: 1s
