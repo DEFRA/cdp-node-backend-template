@@ -80,7 +80,7 @@ const config = convict({
     uri: {
       doc: 'URI for mongodb',
       format: 'mongo-uri',
-      default: null,
+      default: 'mongodb://127.0.0.1:27017',
       env: 'MONGO_URI'
     },
     databaseName: {
