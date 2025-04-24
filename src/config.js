@@ -1,9 +1,6 @@
 import convict from 'convict'
 import convictFormatWithValidator from 'convict-format-with-validator'
 
-import { convictValidateMongoUri } from './common/helpers/convict/validate-mongo-uri.js'
-
-convict.addFormat(convictValidateMongoUri)
 convict.addFormats(convictFormatWithValidator)
 
 const isProduction = process.env.NODE_ENV === 'production'
@@ -74,20 +71,6 @@ const config = convict({
       default: isProduction
         ? ['req.headers.authorization', 'req.headers.cookie', 'res.headers']
         : ['req', 'res', 'responseTime']
-    }
-  },
-  mongo: {
-    uri: {
-      doc: 'URI for mongodb',
-      format: String,
-      default: 'mongodb://127.0.0.1:27017',
-      env: 'MONGO_URI'
-    },
-    databaseName: {
-      doc: 'Database name for mongodb',
-      format: String,
-      default: 'cdp-node-backend-template',
-      env: 'MONGO_DATABASE'
     }
   },
   httpProxy: {

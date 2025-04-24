@@ -39,16 +39,8 @@ checkLogSchema() {
 
 setup() {
   set -e
-  # Generate Self Signed Certs
-  mkdir -p .github/template/ssl
-  openssl req -newkey rsa:2048 -new -x509 -days 365 -nodes -out .github/template/ssl/mongodb-cert.crt -keyout .github/template/ssl/mongodb-cert.key \
-  -subj "/C=UK/ST=STATE/L=CITY/O=ORG_NAME/OU=OU_NAME/CN=mongodb" \
-  -addext "subjectAltName = DNS:localhost, DNS:mongodb"
-  cat .github/template/ssl/mongodb-cert.key .github/template/ssl/mongodb-cert.crt > .github/template/ssl/mongodb.pem
-  mongodbTestCaPem="$(cat .github/template/ssl/mongodb.pem | base64)"
-  export MONGODB_TEST_CA_PEM=$mongodbTestCaPem
 
-  # Start mongodb + templated service
+  # Start templated service
   docker compose -f "$compose_file" up --wait --wait-timeout 60 -d --quiet-pull
   sleep 3
 }
@@ -69,7 +61,6 @@ run_tests() {
 
   # Check endpoints respond
   checkUrl "http://localhost:8085/health"
-  checkUrl "http://localhost:8085/example"
 
   # Check its using ECS
   checkLogSchema

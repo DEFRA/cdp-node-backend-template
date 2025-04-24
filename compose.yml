@@ -30,16 +30,6 @@ services:
     networks:
       - cdp-tenant
 
-  mongodb:
-    image: mongo:6.0.13
-    networks:
-      - cdp-tenant
-    ports:
-      - '27017:27017'
-    volumes:
-      - mongodb-data:/data
-    restart: always
-
   ################################################################################
 
   # frontend:
@@ -73,19 +63,15 @@ services:
       - '3001:3001'
     links:
       - 'localstack:localstack'
-      - 'mongodb:mongodb'
     depends_on:
       localstack:
         condition: service_healthy
-      mongodb:
-        condition: service_started
     env_file:
       - 'compose/aws.env'
     environment:
       PORT: 3001
       NODE_ENV: development
       LOCALSTACK_ENDPOINT: http://localstack:4566
-      MONGO_URI: mongodb://mongodb:27017/
     networks:
       - cdp-tenant
     volumes:
@@ -93,9 +79,6 @@ services:
       - ./package.json:/home/node/package.json
 
 ################################################################################
-
-volumes:
-  mongodb-data:
 
 networks:
   cdp-tenant:
