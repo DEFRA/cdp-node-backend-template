@@ -5,25 +5,24 @@
   "main": "src/index.js",
   "type": "module",
   "engines": {
-    "node": ">=22"
+    "node": ">=22.16.0"
   },
   "scripts": {
-    "docker:dev": "NODE_ENV=development npm run server:watch",
     "dev": "NODE_ENV=development npm run server:watch",
     "dev:debug": "NODE_ENV=development npm run server:debug",
+    "docker:dev": "npm run dev",
     "format": "prettier --write \"**/*.{cjs,js,json,md}\"",
     "format:check": "prettier --check \"**/*.{cjs,js,json,md}\"",
     "git:pre-commit-hook": "npm run format:check && npm run lint",
-    "postinstall": "npm run setup:husky",
     "lint": "eslint --cache --cache-strategy content \"**/*.{cjs,js}\"",
     "lint:fix": "npm run lint -- --fix",
-    "postversion": "git add package.json package-lock.json && git commit -m $npm_package_version",
-    "test": "node --no-experimental-require-module ./node_modules/jest/bin/jest.js --coverage --verbose --runInBand",
-    "test:watch": "node --no-experimental-require-module ./node_modules/jest/bin/jest.js --watch",
-    "server:watch": "nodemon --inspect=0.0.0.0 --ext js,json --legacy-watch ./src",
+    "postinstall": "npm run setup:husky",
     "server:debug": "nodemon --inspect-brk=0.0.0.0 --ext js,json --legacy-watch ./src",
+    "server:watch": "nodemon --inspect=0.0.0.0 --ext js,json --legacy-watch ./src",
+    "setup:husky": "node -e \"try { (await import('husky')).default() } catch (e) { if (e.code !== 'ERR_MODULE_NOT_FOUND') throw e }\" --input-type module",
     "start": "NODE_ENV=production node --use-strict .",
-    "setup:husky": "node -e \"try { (await import('husky')).default() } catch (e) { if (e.code !== 'ERR_MODULE_NOT_FOUND') throw e }\" --input-type module"
+    "test": "node --no-experimental-require-module ./node_modules/jest/bin/jest.js --coverage --verbose --runInBand",
+    "test:watch": "node --no-experimental-require-module ./node_modules/jest/bin/jest.js --watch"
   },
   "author": "Defra DDTS",
   "license": "OGL-UK-3.0",
