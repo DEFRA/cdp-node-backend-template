@@ -12,6 +12,6 @@ export default defineConfig({
       include: ['src/**'],
       exclude: [...configDefaults.exclude, 'coverage']
     },
-    setupFiles: ['.vite/mongo-memory-server.js', '.vite/setup-files.js']
+    setupFiles: ['.vite/setup-files.js']
   }
 })
