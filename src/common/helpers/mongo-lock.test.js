@@ -6,10 +6,10 @@ describe('Lock Functions', () => {
 
   beforeEach(() => {
     locker = {
-      lock: jest.fn()
+      lock: vi.fn()
     }
     logger = {
-      error: jest.fn()
+      error: vi.fn()
     }
   })
 

@@ -77,17 +77,35 @@ const config = convict({
     }
   },
   mongo: {
-    uri: {
+    mongoUrl: {
       doc: 'URI for mongodb',
       format: String,
-      default: 'mongodb://127.0.0.1:27017',
+      default: 'mongodb://127.0.0.1:27017/',
       env: 'MONGO_URI'
     },
     databaseName: {
-      doc: 'Database name for mongodb',
+      doc: 'database for mongodb',
       format: String,
       default: 'cdp-node-backend-template',
       env: 'MONGO_DATABASE'
+    },
+    mongoOptions: {
+      retryWrites: {
+        doc: 'enable mongo write retries',
+        format: Boolean,
+        default: false
+      },
+      readPreference: {
+        doc: 'mongo read preference',
+        format: [
+          'primary',
+          'primaryPreferred',
+          'secondary',
+          'secondaryPreferred',
+          'nearest'
+        ],
+        default: 'secondary'
+      }
     }
   },
   httpProxy: {
