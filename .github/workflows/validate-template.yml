@@ -13,12 +13,11 @@ on:
 
 jobs:
   pr-validator:
-    name: Run Pull Request Template Checks
+    name: Run Validate Template Checks
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
         uses: actions/checkout@v4
-      - name: Apply template
-        run: .github/template/apply.sh DEFRA/template-backend
+
       - name: Check container starts in production-like mode
         run: .github/template/validate.sh
