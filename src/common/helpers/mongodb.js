@@ -9,7 +9,8 @@ export const mongoDb = {
       server.logger.info('Setting up MongoDb')
 
       const client = await MongoClient.connect(options.mongoUrl, {
-        ...options.mongoOptions
+        ...options.mongoOptions,
+        ...(server?.secureContext && { secureContext: server.secureContext })
       })
 
       const databaseName = options.databaseName
