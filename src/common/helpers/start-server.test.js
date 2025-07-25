@@ -17,6 +17,7 @@ vi.mock('hapi-pino', () => ({
     name: 'mock-hapi-pino'
   }
 }))
+
 vi.mock('./logging/logger.js', () => ({
   createLogger: () => ({
     info: (...args) => mockLoggerInfo(...args),
@@ -38,10 +39,6 @@ describe('#startServer', () => {
 
     createServerSpy = vi.spyOn(createServerImport, 'createServer')
     hapiServerSpy = vi.spyOn(hapi, 'server')
-  })
-
-  afterAll(() => {
-    vi.unstubAllEnvs()
   })
 
   describe('When server starts', () => {
