@@ -17,7 +17,6 @@ vi.mock('hapi-pino', () => ({
     name: 'mock-hapi-pino'
   }
 }))
-
 vi.mock('./logging/logger.js', () => ({
   createLogger: () => ({
     info: (...args) => mockLoggerInfo(...args),
@@ -26,19 +25,25 @@ vi.mock('./logging/logger.js', () => ({
 }))
 
 describe('#startServer', () => {
+  const PROCESS_ENV = process.env
   let createServerSpy
   let hapiServerSpy
   let startServerImport
   let createServerImport
 
   beforeAll(async () => {
-    vi.stubEnv('PORT', '3098')
+    process.env = { ...PROCESS_ENV }
+    process.env.PORT = '3098' // Set to obscure port to avoid conflicts
 
     createServerImport = await import('../../server.js')
     startServerImport = await import('./start-server.js')
 
     createServerSpy = vi.spyOn(createServerImport, 'createServer')
     hapiServerSpy = vi.spyOn(hapi, 'server')
+  })
+
+  afterAll(() => {
+    process.env = PROCESS_ENV
   })
 
   describe('When server starts', () => {
