@@ -115,12 +115,6 @@ const config = convict({
     default: null,
     env: 'HTTP_PROXY'
   },
-  isSecureContextEnabled: {
-    doc: 'Enable Secure Context',
-    format: Boolean,
-    default: isProduction,
-    env: 'ENABLE_SECURE_CONTEXT'
-  },
   isMetricsEnabled: {
     doc: 'Enable metrics reporting',
     format: Boolean,
