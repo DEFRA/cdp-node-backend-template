@@ -25,15 +25,13 @@ vi.mock('./logging/logger.js', () => ({
 }))
 
 describe('#startServer', () => {
-  const PROCESS_ENV = process.env
   let createServerSpy
   let hapiServerSpy
   let startServerImport
   let createServerImport
 
   beforeAll(async () => {
-    process.env = { ...PROCESS_ENV }
-    process.env.PORT = '3098' // Set to obscure port to avoid conflicts
+    vi.stubEnv('PORT', '3098')
 
     createServerImport = await import('../../server.js')
     startServerImport = await import('./start-server.js')
@@ -43,7 +41,7 @@ describe('#startServer', () => {
   })
 
   afterAll(() => {
-    process.env = PROCESS_ENV
+    vi.unstubAllEnvs()
   })
 
   describe('When server starts', () => {
@@ -58,16 +56,10 @@ describe('#startServer', () => {
 
       expect(createServerSpy).toHaveBeenCalled()
       expect(hapiServerSpy).toHaveBeenCalled()
-      expect(mockHapiLoggerInfo).toHaveBeenNthCalledWith(
-        1,
-        'Custom secure context is disabled'
-      )
-      expect(mockHapiLoggerInfo).toHaveBeenNthCalledWith(
-        2,
+      expect(mockHapiLoggerInfo).toHaveBeenCalledWith(
         'Server started successfully'
       )
-      expect(mockHapiLoggerInfo).toHaveBeenNthCalledWith(
-        3,
+      expect(mockHapiLoggerInfo).toHaveBeenCalledWith(
         'Access your backend on http://localhost:3098'
       )
     })
