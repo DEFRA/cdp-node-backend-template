@@ -25,16 +25,13 @@ vi.mock('./logging/logger.js', () => ({
 }))
 
 describe('#startServer', () => {
-  const PROCESS_ENV = process.env
   let createServerSpy
   let hapiServerSpy
   let startServerImport
   let createServerImport
 
   beforeAll(async () => {
-    process.env = { ...PROCESS_ENV }
-    process.env.PORT = '3098' // Set to obscure port to avoid conflicts
-
+    vi.stubEnv('PORT', '3098')
     createServerImport = await import('../../server.js')
     startServerImport = await import('./start-server.js')
 
@@ -43,7 +40,7 @@ describe('#startServer', () => {
   })
 
   afterAll(() => {
-    process.env = PROCESS_ENV
+    vi.resetAllMocks()
   })
 
   describe('When server starts', () => {
