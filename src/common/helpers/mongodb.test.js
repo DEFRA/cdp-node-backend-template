@@ -13,10 +13,6 @@ describe('#mongoDb', () => {
       await server.initialize()
     })
 
-    afterAll(async () => {
-      await server.stop({ timeout: 1000 })
-    })
-
     test('Server should have expected MongoDb decorators', () => {
       expect(server.db).toBeInstanceOf(Db)
       expect(server.mongoClient).toBeInstanceOf(MongoClient)

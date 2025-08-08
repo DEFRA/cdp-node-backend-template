@@ -44,14 +44,8 @@ describe('#startServer', () => {
   })
 
   describe('When server starts', () => {
-    let server
-
-    afterAll(async () => {
-      await server.stop({ timeout: 1000 })
-    })
-
     test('Should start up server as expected', async () => {
-      server = await startServerImport.startServer()
+      await startServerImport.startServer()
 
       expect(createServerSpy).toHaveBeenCalled()
       expect(hapiServerSpy).toHaveBeenCalled()
