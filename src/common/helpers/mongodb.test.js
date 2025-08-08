@@ -14,7 +14,7 @@ describe('#mongoDb', () => {
     })
 
     afterAll(async () => {
-      await server.stop({ timeout: 0 })
+      await server.stop({ timeout: 1000 })
     })
 
     test('Server should have expected MongoDb decorators', () => {
@@ -43,7 +43,7 @@ describe('#mongoDb', () => {
 
     test('Should close Mongo client on server stop', async () => {
       const closeSpy = vi.spyOn(server.mongoClient, 'close')
-      await server.stop({ timeout: 0 })
+      await server.stop({ timeout: 1000 })
 
       expect(closeSpy).toHaveBeenCalledWith(true)
     })
