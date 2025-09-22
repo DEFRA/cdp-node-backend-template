@@ -91,12 +91,14 @@ const config = convict({
     },
     mongoOptions: {
       retryWrites: {
-        doc: 'enable mongo write retries',
+        doc: 'Enable Mongo write retries, overrides mongo URI when set.',
         format: Boolean,
-        default: false
+        default: null,
+        nullable: true,
+        env: 'MONGO_RETRY_WRITES'
       },
       readPreference: {
-        doc: 'mongo read preference',
+        doc: 'Mongo read preference, overrides mongo URI when set.',
         format: [
           'primary',
           'primaryPreferred',
@@ -104,7 +106,9 @@ const config = convict({
           'secondaryPreferred',
           'nearest'
         ],
-        default: 'secondary'
+        default: null,
+        nullable: true,
+        env: 'MONGO_READ_PREFERENCE'
       }
     }
   },
