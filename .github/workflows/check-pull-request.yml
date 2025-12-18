@@ -17,10 +17,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Test code and Create Test Coverage Reports
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version-file: .nvmrc
           cache: npm
@@ -29,6 +29,9 @@ jobs:
           npm run format:check
           npm run lint
           npm test
+
+      - name: Security audit
+        run: npm run security-audit
 
       - name: Test Docker Image Build
         run: |
