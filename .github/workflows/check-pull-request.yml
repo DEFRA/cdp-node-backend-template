@@ -24,14 +24,15 @@ jobs:
         with:
           node-version-file: .nvmrc
           cache: npm
+
+      - name: Security audit
+        run: npm run security-audit
+
       - run: |
           npm ci
           npm run format:check
           npm run lint
           npm test
-
-      - name: Security audit
-        run: npm run security-audit
 
       - name: Test Docker Image Build
         run: |

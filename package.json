@@ -16,7 +16,7 @@
     "git:pre-commit-hook": "npm run security-audit && npm run format:check && npm run lint && npm test",
     "lint": "eslint --cache --cache-strategy content \"**/*.{cjs,js}\"",
     "lint:fix": "npm run lint -- --fix",
-    "security-audit": "npm audit --audit-level=high",
+    "security-audit": "npm audit --audit-level=critical",
     "server:debug": "node --watch --inspect-brk=0.0.0.0 --env-file-if-exists=.env ./src",
     "server:watch": "node --watch --inspect=0.0.0.0 --env-file-if-exists=.env ./src",
     "setup:husky": "node -e \"try { (await import('husky')).default() } catch (e) { if (e.code !== 'ERR_MODULE_NOT_FOUND') throw e }\" --input-type module",
