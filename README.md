@@ -30,7 +30,7 @@ Core delivery platform Node.js Backend Template.
 
 ### Node.js
 
-Please install [Node.js](http://nodejs.org/) `>= v22` and [npm](https://nodejs.org/) `>= v11`. You will find it
+Please install [Node.js](http://nodejs.org/) `>= v24` and [npm](https://nodejs.org/) `>= v11`. You will find it
 easier to use the Node Version Manager [nvm](https://github.com/creationix/nvm)
 
 To use the correct version of Node.js for this application, via nvm:
@@ -189,22 +189,6 @@ return await fetch(url, {
 
 ## Docker
 
-### Development image
-
-Build:
-
-```bash
-docker build --target development --no-cache --tag cdp-node-backend-template:development .
-```
-
-Run:
-
-```bash
-docker run -e PORT=3001 -p 3001:3001 cdp-node-backend-template:development
-```
-
-### Production image
-
 Build:
 
 ```bash
@@ -221,7 +205,7 @@ docker run -e PORT=3001 -p 3001:3001 cdp-node-backend-template
 
 A local environment with:
 
-- Localstack for AWS services (S3, SQS)
+- Floci for AWS services (S3, SQS, SNS etc)
 - Redis
 - MongoDB
 - This service.
@@ -230,6 +214,9 @@ A local environment with:
 ```bash
 docker compose up --build -d
 ```
+
+Mock AWS resources can be created when Floci starts up by editing the scripts in `./compose/floci/start.d/`.
+MongoDB records can also be created when Mongo starts by editing the scripts in `./compose/mongo/`.
 
 ### Dependabot
 
