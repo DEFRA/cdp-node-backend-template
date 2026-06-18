@@ -9,11 +9,9 @@ import { mongoDb } from '#/plugins/mongodb.js'
 import { failAction } from '#/common/helpers/fail-action.js'
 import { pulse } from '#/plugins/pulse.js'
 import { requestTracing } from '#/plugins/request-tracing.js'
-import { setupProxy } from '#/common/helpers/proxy/setup-proxy.js'
 import { metrics } from '@defra/cdp-metrics'
 
 export async function createServer() {
-  setupProxy()
   const server = Hapi.server({
     host: config.get('host'),
     port: config.get('port'),
