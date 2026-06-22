@@ -42,7 +42,7 @@
     "convict": "6.2.5",
     "convict-format-with-validator": "6.2.0",
     "hapi-pino": "13.0.0",
-    "hapi-pulse": "3.0.0",
+    "hapi-pulse": "3.0.1",
     "joi": "18.2.1",
     "mongo-locks": "3.1.2",
     "mongodb": "7.1.1",
