@@ -30,7 +30,7 @@
   "author": "Defra DDTS",
   "license": "OGL-UK-3.0",
   "dependencies": {
-    "@aws-sdk/credential-providers": "3.1050.0",
+    "@aws-sdk/credential-providers": "3.1101.0",
     "@defra/cdp-auditing": "0.6.1",
     "@defra/cdp-metrics": "0.5.0",
     "@defra/hapi-secure-context": "0.4.0",
@@ -44,8 +44,8 @@
     "hapi-pino": "13.0.0",
     "hapi-pulse": "3.0.0",
     "joi": "18.2.1",
-    "mongo-locks": "3.1.2",
-    "mongodb": "7.1.1",
+    "mongo-locks": "3.2.0",
+    "mongodb": "7.5.0",
     "pino": "10.3.1"
   },
   "devDependencies": {
