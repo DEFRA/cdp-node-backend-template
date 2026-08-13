@@ -44,7 +44,7 @@
     "hapi-pino": "13.0.0",
     "hapi-pulse": "3.0.0",
     "joi": "18.2.1",
-    "mongo-locks": "3.1.2",
+    "mongo-locks": "3.2.0",
     "mongodb": "7.5.0",
     "pino": "10.3.1"
   },
