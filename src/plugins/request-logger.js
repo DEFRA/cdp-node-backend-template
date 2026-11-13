@@ -1,8 +1,11 @@
 import hapiPino from 'hapi-pino'
 
-import { loggerOptions } from './logger-options.js'
+import { logDestination, loggerOptions } from './logger-options.js'
 
 export const requestLogger = {
   plugin: hapiPino,
-  options: loggerOptions
+  options: {
+    ...loggerOptions,
+    stream: logDestination
+  }
 }
